@@ -1,0 +1,19 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: var(--light-blue);
+  font-family: "Roboto", sans-serif;
+}
+
+#app {
+  margin: 0px;
+  padding: 0px;
+}
+
+:root {
+  --dark-purple: #231c4b;
+  --light-purple: #665578;
+  --white: #fff;
+  --blue: #1b3573;
+  --light-blue: #a5cfd4;
+}
