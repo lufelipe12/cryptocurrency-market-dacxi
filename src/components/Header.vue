@@ -8,7 +8,7 @@ export default {
   <header>
     <div class="header-div">
       <img class="header-img" alt="logo" src="@/assets/images/dacxi.png" />
-      <p class="header-p">Daxci Wallet</p>
+      <p class="header-p">Dacxi Wallet</p>
     </div>
   </header>
 </template>

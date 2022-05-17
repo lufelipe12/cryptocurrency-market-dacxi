@@ -1,16 +1,8 @@
 <script>
 export default {
   name: "CryptoCard",
-  data() {
-    return {
-      src: "",
-      name: "Bitcoin",
-      price: 1000.0,
-      marketCap: 200000000.0,
-      oldPrice: this.price, // alterar o newPrice com o preço novo
-      pClass: "normal",
-      input_data: "",
-    }
+  props: {
+    coin: Object,
   },
   methods: {
     changeClass() {
@@ -27,12 +19,10 @@ export default {
 
 <template>
   <div class="card">
-    <img class="coin-image" alt="coin-image" src="@/assets/images/dacxi.png" />
-    <p v-bind:class="pClass">{{ name }}</p>
-    <span v-bind:class="pClass">{{ `$ ${price.toFixed(1)}` }}</span>
-    <span v-bind:class="pClass" id="coin-mc">{{
-      `$ ${marketCap.toFixed(1)}`
-    }}</span>
+    <img class="coin-image" alt="coin-image" :src="coin.imgSrc" />
+    <p>{{ coin.coinName }}</p>
+    <span>{{ `$ ${coin.price.toFixed(5)}` }}</span>
+    <span id="coin-mc">{{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
     <input type="date" v-model="input_data" />
   </div>
 </template>
@@ -44,6 +34,7 @@ export default {
   opacity: 80%;
   width: 87%;
   padding: 0px 2%;
+  margin-bottom: 15px;
   height: 100px;
   color: var(--white);
   font-size: 20px;

@@ -1,16 +1,80 @@
 <script>
-import CryptoCard from "@/components/CryptoCard.vue"
-import bitcoin from "../providers/bitcoin.js"
-import ethereum from "../providers/ethereum.js"
+import CryptoCard from "../components/CryptoCard.vue"
+import getBitcoin from "../providers/bitcoin.js"
+import getEthereum from "../providers/ethereum.js"
+import getDacxi from "../providers/dacxi.js"
+import getTerraLuna from "../providers/luna.js"
+import getCosmos from "../providers/atom.js"
 
 export default {
   data() {
     return {
-      currencies: [bitcoin, ethereum],
+      coins: [],
+      input_data: "",
+      names: ["luiz", "prima", "vagaba"],
     }
   },
   components: {
     CryptoCard,
+  },
+  methods: {
+    changeClass() {
+      if (this.oldPrice < this.price) this.pClass = "up"
+      else if (this.oldPrice > this.price) {
+        this.pClass = "down"
+      }
+
+      return setTimeout(() => (this.pClass = "fixed"), 1000)
+    },
+    async getCoins() {
+      const bitcoin = await getBitcoin()
+      const ethereum = await getEthereum()
+      const dacxi = await getDacxi()
+      const luna = await getTerraLuna()
+      const atom = await getCosmos()
+
+      const coinsList = [
+        {
+          coinName: bitcoin.name,
+          price: bitcoin.market_data.current_price.usd,
+          imgSrc: bitcoin.image.small,
+          marketCap: bitcoin.market_data.market_cap.usd,
+        },
+        {
+          coinName: ethereum.name,
+          price: ethereum.market_data.current_price.usd,
+          imgSrc: ethereum.image.small,
+          marketCap: ethereum.market_data.market_cap.usd,
+        },
+        {
+          coinName: dacxi.name,
+          price: dacxi.market_data.current_price.usd,
+          imgSrc: dacxi.image.small,
+          marketCap: dacxi.market_data.market_cap.usd,
+        },
+        {
+          coinName: luna.name,
+          price: luna.market_data.current_price.usd,
+          imgSrc: luna.image.small,
+          marketCap: luna.market_data.market_cap.usd,
+        },
+        {
+          coinName: atom.name,
+          price: atom.market_data.current_price.usd,
+          imgSrc: atom.image.small,
+          marketCap: atom.market_data.market_cap.usd,
+        },
+      ]
+      return coinsList
+    },
+  },
+  async created() {
+    this.coins = await this.getCoins()
+  },
+  async mounted() {
+    setInterval(async () => {
+      this.coins = await this.getCoins()
+    }, 110000)
   },
 }
 </script>
@@ -22,7 +86,9 @@ export default {
       <p>Price</p>
       <p class="market-c">Market cap.</p>
     </div>
-    <CryptoCard :currencies="currencies" />
+    <section v-for="coin in coins">
+      <CryptoCard :coin="coin" />
+    </section>
   </main>
 </template>
 
@@ -50,6 +116,14 @@ main {
 
 .market-c {
   display: none;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0px 2%;
 }
 
 @media (min-width: 768px) {

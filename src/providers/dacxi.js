@@ -1,11 +1,11 @@
 import api from "../services/index.js"
 
-function getCosmos() {
-  const cosmos = api
-    .get("/coins/cosmos")
+function getDacxi() {
+  const dacxi = api
+    .get("/coins/dacxi")
     .then((res) => res.data)
     .catch((error) => console.log(error))
 
-  return cosmos
+  return dacxi
 }
-export default getCosmos
+export default getDacxi
