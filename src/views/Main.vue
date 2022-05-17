@@ -1,25 +1,17 @@
 <script>
 import CryptoCard from "@/components/CryptoCard.vue"
-import Modal from "@/components/Modal.vue"
+import bitcoin from "../database/bitcoin.js"
+import ethereum from "../database/ethereum.js"
 
 export default {
   data() {
     return {
-      modalOpenned: false,
+      currencies: [bitcoin, ethereum],
     }
   },
   components: {
     CryptoCard,
-    Modal,
   },
-}
-
-const openModal = () => {
-  console.log("click")
-  this.modalOpenned = true
-}
-const closeModal = () => {
-  this.modalOpenned = false
 }
 </script>
 
@@ -30,8 +22,7 @@ const closeModal = () => {
       <p>Price</p>
       <p class="market-c">Market cap.</p>
     </div>
-    <CryptoCard :openModal="openModal" />
-    <Modal :closeModal="closeModal" v-if="modalOpenned" />
+    <CryptoCard :currencies="currencies" />
   </main>
 </template>
 

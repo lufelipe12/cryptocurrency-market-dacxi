@@ -21,26 +21,31 @@ export default {
 
       return setTimeout(() => (this.pClass = "fixed"), 1000)
     },
-    props: ["openModal"],
   },
 }
 </script>
 
 <template>
-  <div class="card">
-    <img class="coin-image" alt="coin-image" src="@/assets/images/dacxi.png" />
-    <p v-bind:class="pClass">{{ name }}</p>
-    <span v-bind:class="pClass">{{ `$ ${price.toFixed(1)}` }}</span>
-    <span v-bind:class="pClass" id="coin-mc">{{
-      `$ ${marketCap.toFixed(1)}`
-    }}</span>
-    <img
-      class="date"
-      alt="date"
-      src="@/assets/images/date.png"
-      @click="openModal"
-    />
-  </div>
+  <section>
+    <div class="card">
+      <img
+        class="coin-image"
+        alt="coin-image"
+        src="@/assets/images/dacxi.png"
+      />
+      <p v-bind:class="pClass">{{ currencie.name }}</p>
+      <span v-bind:class="pClass">{{ `$ ${currencie.price.toFixed(1)}` }}</span>
+      <span v-bind:class="pClass" id="coin-mc">{{
+        `$ ${currencie.marketCap.toFixed(1)}`
+      }}</span>
+      <img
+        class="date"
+        alt="date"
+        src="@/assets/images/date.png"
+        @click="openModal"
+      />
+    </div>
+  </section>
 </template>
 
 <style>
