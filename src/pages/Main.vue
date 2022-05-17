@@ -1,7 +1,7 @@
 <script>
 import CryptoCard from "@/components/CryptoCard.vue"
-import bitcoin from "../database/bitcoin.js"
-import ethereum from "../database/ethereum.js"
+import bitcoin from "../providers/bitcoin.js"
+import ethereum from "../providers/ethereum.js"
 
 export default {
   data() {

@@ -1,5 +1,4 @@
 <script>
-import show from "../views/Main.vue"
 export default {
   name: "CryptoCard",
   data() {
@@ -10,6 +9,7 @@ export default {
       marketCap: 200000000.0,
       oldPrice: this.price, // alterar o newPrice com o preço novo
       pClass: "normal",
+      input_data: "",
     }
   },
   methods: {
@@ -26,26 +26,15 @@ export default {
 </script>
 
 <template>
-  <section>
-    <div class="card">
-      <img
-        class="coin-image"
-        alt="coin-image"
-        src="@/assets/images/dacxi.png"
-      />
-      <p v-bind:class="pClass">{{ currencie.name }}</p>
-      <span v-bind:class="pClass">{{ `$ ${currencie.price.toFixed(1)}` }}</span>
-      <span v-bind:class="pClass" id="coin-mc">{{
-        `$ ${currencie.marketCap.toFixed(1)}`
-      }}</span>
-      <img
-        class="date"
-        alt="date"
-        src="@/assets/images/date.png"
-        @click="openModal"
-      />
-    </div>
-  </section>
+  <div class="card">
+    <img class="coin-image" alt="coin-image" src="@/assets/images/dacxi.png" />
+    <p v-bind:class="pClass">{{ name }}</p>
+    <span v-bind:class="pClass">{{ `$ ${price.toFixed(1)}` }}</span>
+    <span v-bind:class="pClass" id="coin-mc">{{
+      `$ ${marketCap.toFixed(1)}`
+    }}</span>
+    <input type="date" v-model="input_data" />
+  </div>
 </template>
 
 <style>
@@ -96,6 +85,16 @@ export default {
 }
 
 .date:hover {
+  cursor: pointer;
+}
+
+input {
+  width: 15px;
+  background-color: var(--light-purple);
+  border: none;
+}
+
+input:hover {
   cursor: pointer;
 }
 
