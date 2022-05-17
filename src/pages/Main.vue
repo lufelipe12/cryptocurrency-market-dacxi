@@ -1,7 +1,14 @@
 <script>
 import CryptoCard from "@/components/CryptoCard.vue"
+import bitcoin from "../providers/bitcoin.js"
+import ethereum from "../providers/ethereum.js"
 
 export default {
+  data() {
+    return {
+      currencies: [bitcoin, ethereum],
+    }
+  },
   components: {
     CryptoCard,
   },
@@ -10,13 +17,12 @@ export default {
 
 <template>
   <main>
-    <h1>Main page</h1>
     <div class="guide">
       <p>Name</p>
       <p>Price</p>
       <p class="market-c">Market cap.</p>
     </div>
-    <CryptoCard />
+    <CryptoCard :currencies="currencies" />
   </main>
 </template>
 
@@ -31,10 +37,11 @@ main {
 
 .guide {
   background-color: var(--blue);
-  width: 90%;
+  padding: 0px 4%;
+  width: 83%;
   height: 40px;
   border-radius: 2px;
-  margin-bottom: 15px;
+  margin: 25px 0px 15px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -43,5 +50,11 @@ main {
 
 .market-c {
   display: none;
+}
+
+@media (min-width: 768px) {
+  .market-c {
+    display: block;
+  }
 }
 </style>
