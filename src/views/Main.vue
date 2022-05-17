@@ -1,22 +1,37 @@
 <script>
 import CryptoCard from "@/components/CryptoCard.vue"
+import Modal from "@/components/Modal.vue"
 
 export default {
+  data() {
+    return {
+      modalOpenned: false,
+    }
+  },
   components: {
     CryptoCard,
+    Modal,
   },
+}
+
+const openModal = () => {
+  console.log("click")
+  this.modalOpenned = true
+}
+const closeModal = () => {
+  this.modalOpenned = false
 }
 </script>
 
 <template>
   <main>
-    <h1>Main page</h1>
     <div class="guide">
       <p>Name</p>
       <p>Price</p>
       <p class="market-c">Market cap.</p>
     </div>
-    <CryptoCard />
+    <CryptoCard :openModal="openModal" />
+    <Modal :closeModal="closeModal" v-if="modalOpenned" />
   </main>
 </template>
 
@@ -31,10 +46,11 @@ main {
 
 .guide {
   background-color: var(--blue);
-  width: 90%;
+  padding: 0px 4%;
+  width: 83%;
   height: 40px;
   border-radius: 2px;
-  margin-bottom: 15px;
+  margin: 25px 0px 15px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -43,5 +59,11 @@ main {
 
 .market-c {
   display: none;
+}
+
+@media (min-width: 768px) {
+  .market-c {
+    display: block;
+  }
 }
 </style>
