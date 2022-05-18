@@ -6,6 +6,8 @@ import getDacxi from "../providers/dacxi.js"
 import getTerraLuna from "../providers/luna.js"
 import getCosmos from "../providers/atom.js"
 
+import "animate.css"
+
 export default {
   data() {
     return {
@@ -106,7 +108,11 @@ export default {
       </div>
     </div>
     <section v-for="(coin, index) in coins" :key="index">
-      <CryptoCard :coin="coin" :index="index" />
+      <CryptoCard
+        :coin="coin"
+        :index="index"
+        class="animate__animated animate__fadeInUp"
+      />
     </section>
   </main>
 </template>
