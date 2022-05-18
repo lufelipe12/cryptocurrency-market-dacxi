@@ -86,7 +86,7 @@ export default {
       <p>Price</p>
       <p class="market-c">Market cap.</p>
     </div>
-    <section v-for="coin in coins">
+    <section v-for="(coin, index) in coins" :key="index">
       <CryptoCard :coin="coin" />
     </section>
   </main>
@@ -98,20 +98,23 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 100vh;
 }
 
 .guide {
-  background-color: var(--blue);
   padding: 0px 4%;
   width: 83%;
   height: 40px;
-  border-radius: 2px;
   margin: 25px 0px 15px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: var(--blue);
   color: var(--white);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .market-c {
@@ -123,12 +126,15 @@ section {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0px 2%;
 }
 
 @media (min-width: 768px) {
   .market-c {
     display: block;
+  }
+
+  .guide {
+    font-size: 18px;
   }
 }
 </style>

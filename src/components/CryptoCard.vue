@@ -31,22 +31,24 @@ export default {
 @import "@/assets/base.css";
 .card {
   background-color: var(--light-purple);
-  opacity: 80%;
+  color: var(--white);
   width: 87%;
   padding: 0px 2%;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   height: 100px;
-  color: var(--white);
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 2px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .card:hover {
   transition: 1s;
-  opacity: 100%;
+  opacity: 80%;
 }
 
 .coin-image {
@@ -92,6 +94,9 @@ input:hover {
 @media (min-width: 768px) {
   #coin-mc {
     display: block;
+  }
+  .card {
+    font-size: 22px;
   }
 }
 </style>

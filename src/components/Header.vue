@@ -17,7 +17,14 @@ export default {
 header {
   width: 100%;
   height: 100px;
-  background-color: var(--dark-purple);
+  background-image: linear-gradient(
+    to right top,
+    var(--dark-purple),
+    #352956,
+    #463761,
+    #56466c,
+    var(--light-purple)
+  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +32,7 @@ header {
 
 .header-div {
   width: 300px;
+  height: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
