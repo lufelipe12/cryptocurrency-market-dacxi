@@ -140,6 +140,8 @@ section {
   width: 100%;
 }
 
+/* animation on load screen */
+
 .lds-roller {
   display: inline-block;
   position: relative;
