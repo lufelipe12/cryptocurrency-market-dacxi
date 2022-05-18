@@ -10,15 +10,13 @@ export default {
   data() {
     return {
       coins: [],
-      input_data: "",
-      names: ["luiz", "prima", "vagaba"],
     }
   },
   components: {
     CryptoCard,
   },
   methods: {
-    changeClass() {
+    isUpOrDown() {
       if (this.oldPrice < this.price) this.pClass = "up"
       else if (this.oldPrice > this.price) {
         this.pClass = "down"
@@ -26,6 +24,7 @@ export default {
 
       return setTimeout(() => (this.pClass = "fixed"), 1000)
     },
+
     async getCoins() {
       const bitcoin = await getBitcoin()
       const ethereum = await getEthereum()
@@ -39,42 +38,49 @@ export default {
           price: bitcoin.market_data.current_price.usd,
           imgSrc: bitcoin.image.small,
           marketCap: bitcoin.market_data.market_cap.usd,
+          id: bitcoin.id,
         },
         {
           coinName: ethereum.name,
           price: ethereum.market_data.current_price.usd,
           imgSrc: ethereum.image.small,
           marketCap: ethereum.market_data.market_cap.usd,
+          id: ethereum.id,
         },
         {
           coinName: dacxi.name,
           price: dacxi.market_data.current_price.usd,
           imgSrc: dacxi.image.small,
           marketCap: dacxi.market_data.market_cap.usd,
+          id: dacxi.id,
         },
         {
           coinName: luna.name,
           price: luna.market_data.current_price.usd,
           imgSrc: luna.image.small,
           marketCap: luna.market_data.market_cap.usd,
+          id: luna.id,
         },
         {
           coinName: atom.name,
           price: atom.market_data.current_price.usd,
           imgSrc: atom.image.small,
           marketCap: atom.market_data.market_cap.usd,
+          id: atom.id,
         },
       ]
       return coinsList
     },
   },
+
   async created() {
     this.coins = await this.getCoins()
   },
+  // interval based on api update
   async mounted() {
     setInterval(async () => {
       this.coins = await this.getCoins()
-    }, 110000)
+    }, 10000)
   },
 }
 </script>
@@ -86,6 +92,7 @@ export default {
       <p>Price</p>
       <p class="market-c">Market Cap</p>
     </div>
+    <!-- loading symbol -->
     <div class="" v-if="coins.length !== 5">
       <div class="lds-roller">
         <div></div>
@@ -99,7 +106,7 @@ export default {
       </div>
     </div>
     <section v-for="(coin, index) in coins" :key="index">
-      <CryptoCard :coin="coin" />
+      <CryptoCard :coin="coin" :index="index" />
     </section>
   </main>
 </template>
