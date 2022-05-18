@@ -89,7 +89,7 @@ export default {
 
 <template>
   <main>
-    <div class="guide">
+    <div class="guide animate__animated animate__backInDown">
       <p>Name</p>
       <p>Price</p>
       <p class="market-c">Market Cap</p>
