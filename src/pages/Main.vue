@@ -78,11 +78,11 @@ export default {
   async created() {
     this.coins = await this.getCoins()
   },
-  // interval based on api update
+
   async mounted() {
     setInterval(async () => {
       this.coins = await this.getCoins()
-    }, 10000)
+    }, 11000)
   },
 }
 </script>

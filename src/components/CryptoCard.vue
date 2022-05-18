@@ -1,6 +1,8 @@
 <script>
 import api from "../services/index.js"
 
+import "animate.css"
+
 export default {
   name: "CryptoCard",
   data() {
@@ -38,6 +40,7 @@ export default {
       this.coin.price = pastData.market_data.current_price.usd
       this.coin.marketCap = pastData.market_data.market_cap.usd
       this.past = true
+      return setTimeout(() => (this.past = false), 4000)
     },
   },
 }
@@ -48,11 +51,15 @@ export default {
     <img class="coin-image" alt="coin-image" :src="coin.imgSrc" />
     <p>{{ coin.coinName }}</p>
     <div class="price-div">
-      <span class="past" v-if="past === true">OUTDATED PRICE</span>
+      <span class="past animate__animated animate__flash" v-if="past === true"
+        >OUTDATED PRICE</span
+      >
       <span>{{ `$ ${coin.price.toFixed(5)}` }}</span>
     </div>
     <div class="price-div" id="coin-mc">
-      <span class="past" v-if="past === true">OUTDATED MARKET CAP</span>
+      <span class="past animate__animated animate__flash" v-if="past === true"
+        >OUTDATED MARKET CAP</span
+      >
       <span> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
     </div>
     <input
