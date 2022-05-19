@@ -1,11 +1,13 @@
 <script>
+import "animate.css"
+
 export default {
   name: "Header",
 }
 </script>
 
 <template>
-  <header>
+  <header class="animate__animated animate__backInDown">
     <div class="header-div">
       <img class="header-img" alt="logo" src="@/assets/images/dacxi.png" />
       <p class="header-p">Dacxi Wallet</p>

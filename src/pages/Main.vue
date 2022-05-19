@@ -6,24 +6,27 @@ import getDacxi from "../providers/dacxi.js"
 import getTerraLuna from "../providers/luna.js"
 import getCosmos from "../providers/atom.js"
 
+import "animate.css"
+
 export default {
   data() {
     return {
       coins: [],
+      timer: 20,
     }
   },
   components: {
     CryptoCard,
   },
   methods: {
-    isUpOrDown() {
-      if (this.oldPrice < this.price) this.pClass = "up"
-      else if (this.oldPrice > this.price) {
-        this.pClass = "down"
-      }
+    // isUpOrDown() {
+    //   if (this.oldPrice < this.price) this.pClass = "up"
+    //   else if (this.oldPrice > this.price) {
+    //     this.pClass = "down"
+    //   }
 
-      return setTimeout(() => (this.pClass = "fixed"), 1000)
-    },
+    //   return setTimeout(() => (this.pClass = "fixed"), 1000)
+    // },
 
     async getCoins() {
       const bitcoin = await getBitcoin()
@@ -32,43 +35,17 @@ export default {
       const luna = await getTerraLuna()
       const atom = await getCosmos()
 
-      const coinsList = [
-        {
-          coinName: bitcoin.name,
-          price: bitcoin.market_data.current_price.usd,
-          imgSrc: bitcoin.image.small,
-          marketCap: bitcoin.market_data.market_cap.usd,
-          id: bitcoin.id,
-        },
-        {
-          coinName: ethereum.name,
-          price: ethereum.market_data.current_price.usd,
-          imgSrc: ethereum.image.small,
-          marketCap: ethereum.market_data.market_cap.usd,
-          id: ethereum.id,
-        },
-        {
-          coinName: dacxi.name,
-          price: dacxi.market_data.current_price.usd,
-          imgSrc: dacxi.image.small,
-          marketCap: dacxi.market_data.market_cap.usd,
-          id: dacxi.id,
-        },
-        {
-          coinName: luna.name,
-          price: luna.market_data.current_price.usd,
-          imgSrc: luna.image.small,
-          marketCap: luna.market_data.market_cap.usd,
-          id: luna.id,
-        },
-        {
-          coinName: atom.name,
-          price: atom.market_data.current_price.usd,
-          imgSrc: atom.image.small,
-          marketCap: atom.market_data.market_cap.usd,
-          id: atom.id,
-        },
-      ]
+      const data = [bitcoin, ethereum, dacxi, luna, atom]
+
+      const coinsList = data.map((coin) => {
+        return {
+          id: coin.id,
+          imgSrc: coin.image.small,
+          coinName: coin.name,
+          price: coin.market_data.current_price.usd,
+          marketCap: coin.market_data.market_cap.usd,
+        }
+      })
       return coinsList
     },
   },
@@ -76,22 +53,24 @@ export default {
   async created() {
     this.coins = await this.getCoins()
   },
-  // interval based on api update
+
   async mounted() {
+    // here was set an interval of 20 seconds to page update
     setInterval(async () => {
       this.coins = await this.getCoins()
-    }, 10000)
+    }, 20000)
   },
 }
 </script>
 
 <template>
   <main>
-    <div class="guide">
+    <div class="guide animate__animated animate__backInDown">
       <p>Name</p>
       <p>Price</p>
       <p class="market-c">Market Cap</p>
     </div>
+
     <!-- loading symbol -->
     <div class="" v-if="coins.length !== 5">
       <div class="lds-roller">
@@ -106,7 +85,11 @@ export default {
       </div>
     </div>
     <section v-for="(coin, index) in coins" :key="index">
-      <CryptoCard :coin="coin" :index="index" />
+      <CryptoCard
+        :coin="coin"
+        :index="index"
+        class="animate__animated animate__fadeInUp"
+      />
     </section>
   </main>
 </template>
