@@ -12,12 +12,14 @@ export default {
   data() {
     return {
       coins: [],
-      timer: 20,
+      pastCryptos: [],
     }
   },
+
   components: {
     CryptoCard,
   },
+
   methods: {
     async getCoins() {
       const bitcoin = await getBitcoin()
@@ -37,19 +39,26 @@ export default {
           marketCap: coin.market_data.market_cap.usd,
         }
       })
+
       return coinsList
     },
   },
 
   async created() {
     this.coins = await this.getCoins()
+
+    localStorage.setItem("coinList@dacxi", JSON.stringify(this.coins))
   },
 
   async mounted() {
-    // here was set an interval of 20 seconds to page update
     setInterval(async () => {
       this.coins = await this.getCoins()
     }, 20000)
+    //delay to save on localStorage
+    setInterval(async () => {
+      localStorage.setItem("coinList@dacxi", JSON.stringify(this.coins))
+      this.pastCryptos = JSON.parse(localStorage.getItem("coinList@dacxi"))
+    }, 21500)
   },
 }
 </script>
@@ -61,7 +70,6 @@ export default {
       <p>Price</p>
       <p class="market-c">Market Cap</p>
     </div>
-
     <!-- loading symbol -->
     <div class="" v-if="coins.length !== 5">
       <div class="lds-roller">
@@ -78,6 +86,7 @@ export default {
     <section v-for="(coin, index) in coins" :key="index">
       <CryptoCard
         :coin="coin"
+        :pastCryptos="pastCryptos"
         :index="index"
         class="animate__animated animate__fadeInUp"
       />
@@ -106,7 +115,6 @@ main {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
-  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 

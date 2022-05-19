@@ -8,13 +8,14 @@ export default {
   data() {
     return {
       input_data: "",
-      id: 0,
       past: false,
+      changeClass: "fixed",
     }
   },
 
   props: {
     coin: Object,
+    pastCryptos: Object,
     index: Number,
   },
 
@@ -44,6 +45,24 @@ export default {
       }, 5000)
     },
   },
+
+  created() {
+    setInterval(() => {
+      const cryptoPrice = this.pastCryptos.find(
+        (crypto) => crypto.coinName === this.coin.coinName
+      ).price
+      if (this.coin.price - cryptoPrice > 0) {
+        this.changeClass = "up"
+      } else if (this.coin.price - cryptoPrice < 0) {
+        this.changeClass = "down"
+      } else {
+        this.changeClass = "fixed"
+      }
+      setTimeout(() => {
+        this.changeClass = "fixed"
+      }, 2000)
+    }, 20500)
+  },
 }
 </script>
 
@@ -55,20 +74,25 @@ export default {
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED PRICE</span
       >
-      <span id="breathing-text">{{ `$ ${coin.price.toFixed(5)}` }}</span>
+      <span :class="changeClass" id="breathing-text">{{
+        `$ ${coin.price.toFixed(5)}`
+      }}</span>
     </div>
     <div class="price-div" id="coin-mc">
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED MARKET CAP</span
       >
-      <span id="breathing-text"> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
+      <span :class="changeClass" id="breathing-text">{{
+        `$ ${coin.marketCap.toFixed(1)}`
+      }}</span>
     </div>
-    <input
-      class="pick-date"
-      type="datetime-local"
-      v-model="input_data"
-      v-on:change="getPastPrice"
-    />
+    <div class="pick-date">
+      <input
+        type="datetime-local"
+        v-model="input_data"
+        v-on:change="getPastPrice"
+      />
+    </div>
   </div>
 </template>
 
@@ -87,7 +111,6 @@ export default {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
-  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
@@ -110,7 +133,7 @@ export default {
   color: var(--outofdate);
 }
 
-/* .fixed {
+.fixed {
   color: var(--white);
 }
 
@@ -120,7 +143,7 @@ export default {
 
 .down {
   color: var(--down);
-} */
+}
 
 #coin-mc {
   display: none;
@@ -128,16 +151,13 @@ export default {
 
 input {
   background-color: var(--light-purple);
+  width: 17px;
   border: none;
 }
 
 input:focus {
   box-shadow: 0 0 0 0;
   outline: 0;
-}
-
-.pick-date {
-  width: 17px;
 }
 
 /* breathing effect */
