@@ -19,15 +19,6 @@ export default {
   },
 
   methods: {
-    // changeClass() {
-    //   if (this.oldPrice < this.price) this.pClass = "up"
-    //   else if (this.oldPrice > this.price) {
-    //     this.pClass = "down"
-    //   }
-
-    //   return setTimeout(() => (this.pClass = "fixed"), 1000)
-    // },
-
     async getPastPrice() {
       const from = new Date(this.input_data).getTime() / 1000
       /// this interval (10000) was selected to reduce api response
@@ -64,13 +55,13 @@ export default {
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED PRICE</span
       >
-      <span>{{ `$ ${coin.price.toFixed(5)}` }}</span>
+      <span id="breathing-text">{{ `$ ${coin.price.toFixed(5)}` }}</span>
     </div>
     <div class="price-div" id="coin-mc">
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED MARKET CAP</span
       >
-      <span> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
+      <span id="breathing-text"> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
     </div>
     <input
       class="pick-date"
@@ -147,6 +138,39 @@ input:focus {
 
 .pick-date {
   width: 17px;
+}
+
+/* breathing effect */
+
+#breathing-text {
+  animation: breathing 3s ease-out infinite normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
+
+  100% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
 }
 
 @media (min-width: 768px) {

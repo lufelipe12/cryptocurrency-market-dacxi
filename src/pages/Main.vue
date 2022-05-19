@@ -19,15 +19,6 @@ export default {
     CryptoCard,
   },
   methods: {
-    // isUpOrDown() {
-    //   if (this.oldPrice < this.price) this.pClass = "up"
-    //   else if (this.oldPrice > this.price) {
-    //     this.pClass = "down"
-    //   }
-
-    //   return setTimeout(() => (this.pClass = "fixed"), 1000)
-    // },
-
     async getCoins() {
       const bitcoin = await getBitcoin()
       const ethereum = await getEthereum()
