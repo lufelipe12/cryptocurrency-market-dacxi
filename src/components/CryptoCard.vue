@@ -19,17 +19,18 @@ export default {
   },
 
   methods: {
-    changeClass() {
-      if (this.oldPrice < this.price) this.pClass = "up"
-      else if (this.oldPrice > this.price) {
-        this.pClass = "down"
-      }
+    // changeClass() {
+    //   if (this.oldPrice < this.price) this.pClass = "up"
+    //   else if (this.oldPrice > this.price) {
+    //     this.pClass = "down"
+    //   }
 
-      return setTimeout(() => (this.pClass = "fixed"), 1000)
-    },
+    //   return setTimeout(() => (this.pClass = "fixed"), 1000)
+    // },
 
     async getPastPrice() {
       const from = new Date(this.input_data).getTime() / 1000
+      /// this interval (10000) was selected to reduce api response
       const to = from + 10000
       const coinId = this.coin.id
 
@@ -40,15 +41,13 @@ export default {
         .then((res) => res.data)
         .catch((error) => console.log(error))
 
-      if (pastData.prices.length > 0) {
+      if (pastData.prices.length > 0 && pastData.market_caps.length > 0) {
         this.coin.price = pastData.prices[0][1]
-      }
-
-      if (pastData.market_caps.length > 0) {
         this.coin.marketCap = pastData.market_caps[0][1]
+        // alert the user that the price is out of date
+        this.past = true
       }
 
-      this.past = true
       return setTimeout(() => {
         this.past = false
       }, 5000)
@@ -83,7 +82,7 @@ export default {
 </template>
 
 <style>
-@import "@/assets/base.css";
+@import "@/assets/global.css";
 .card {
   background-color: var(--light-purple);
   color: var(--white);
@@ -120,7 +119,7 @@ export default {
   color: var(--outofdate);
 }
 
-.fixed {
+/* .fixed {
   color: var(--white);
 }
 
@@ -130,7 +129,7 @@ export default {
 
 .down {
   color: var(--down);
-}
+} */
 
 #coin-mc {
   display: none;
