@@ -47,6 +47,7 @@ export default {
   },
 
   created() {
+    // here we compare the past price against the updated price and change the class
     setInterval(() => {
       const cryptoPrice = this.pastCryptos.find(
         (crypto) => crypto.coinName === this.coin.coinName
