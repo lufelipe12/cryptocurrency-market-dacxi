@@ -8,26 +8,18 @@ export default {
   data() {
     return {
       input_data: "",
-      id: 0,
       past: false,
+      changeClass: "fixed",
     }
   },
 
   props: {
     coin: Object,
+    pastCryptos: Object,
     index: Number,
   },
 
   methods: {
-    // changeClass() {
-    //   if (this.oldPrice < this.price) this.pClass = "up"
-    //   else if (this.oldPrice > this.price) {
-    //     this.pClass = "down"
-    //   }
-
-    //   return setTimeout(() => (this.pClass = "fixed"), 1000)
-    // },
-
     async getPastPrice() {
       const from = new Date(this.input_data).getTime() / 1000
       /// this interval (10000) was selected to reduce api response
@@ -53,6 +45,24 @@ export default {
       }, 5000)
     },
   },
+
+  created() {
+    setInterval(() => {
+      const cryptoPrice = this.pastCryptos.find(
+        (crypto) => crypto.coinName === this.coin.coinName
+      ).price
+      if (this.coin.price - cryptoPrice > 0) {
+        this.changeClass = "up"
+      } else if (this.coin.price - cryptoPrice < 0) {
+        this.changeClass = "down"
+      } else {
+        this.changeClass = "fixed"
+      }
+      setTimeout(() => {
+        this.changeClass = "fixed"
+      }, 2000)
+    }, 20500)
+  },
 }
 </script>
 
@@ -64,20 +74,25 @@ export default {
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED PRICE</span
       >
-      <span>{{ `$ ${coin.price.toFixed(5)}` }}</span>
+      <span :class="changeClass" id="breathing-text">{{
+        `$ ${coin.price.toFixed(5)}`
+      }}</span>
     </div>
     <div class="price-div" id="coin-mc">
       <span class="past animate__animated animate__flash" v-if="past === true"
         >OUTDATED MARKET CAP</span
       >
-      <span> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
+      <span :class="changeClass" id="breathing-text">{{
+        `$ ${coin.marketCap.toFixed(1)}`
+      }}</span>
     </div>
-    <input
-      class="pick-date"
-      type="datetime-local"
-      v-model="input_data"
-      v-on:change="getPastPrice"
-    />
+    <div class="pick-date">
+      <input
+        type="datetime-local"
+        v-model="input_data"
+        v-on:change="getPastPrice"
+      />
+    </div>
   </div>
 </template>
 
@@ -96,7 +111,6 @@ export default {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
-  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
@@ -119,7 +133,7 @@ export default {
   color: var(--outofdate);
 }
 
-/* .fixed {
+.fixed {
   color: var(--white);
 }
 
@@ -129,7 +143,7 @@ export default {
 
 .down {
   color: var(--down);
-} */
+}
 
 #coin-mc {
   display: none;
@@ -137,6 +151,7 @@ export default {
 
 input {
   background-color: var(--light-purple);
+  width: 17px;
   border: none;
 }
 
@@ -145,8 +160,37 @@ input:focus {
   outline: 0;
 }
 
-.pick-date {
-  width: 17px;
+/* breathing effect */
+
+#breathing-text {
+  animation: breathing 3s ease-out infinite normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
+
+  100% {
+    -webkit-transform: scale(0.96);
+    -ms-transform: scale(0.96);
+    transform: scale(0.96);
+  }
 }
 
 @media (min-width: 768px) {
