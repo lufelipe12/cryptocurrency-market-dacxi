@@ -29,18 +29,29 @@ export default {
     },
 
     async getPastPrice() {
-      const treatedData = this.input_data.split("-").reverse().join("-")
+      const from = new Date(this.input_data).getTime() / 1000
+      const to = from + 10000
       const coinId = this.coin.id
 
       const pastData = await api
-        .get(`/coins/${coinId}/history?date=${treatedData}`)
+        .get(
+          `/coins/${coinId}/market_chart/range?vs_currency=usd&from=${from}&to=${to}'`
+        )
         .then((res) => res.data)
         .catch((error) => console.log(error))
 
-      this.coin.price = pastData.market_data.current_price.usd
-      this.coin.marketCap = pastData.market_data.market_cap.usd
+      if (pastData.prices.length > 0) {
+        this.coin.price = pastData.prices[0][1]
+      }
+
+      if (pastData.market_caps.length > 0) {
+        this.coin.marketCap = pastData.market_caps[0][1]
+      }
+
       this.past = true
-      return setTimeout(() => (this.past = false), 4000)
+      return setTimeout(() => {
+        this.past = false
+      }, 5000)
     },
   },
 }
@@ -63,9 +74,9 @@ export default {
       <span> {{ `$ ${coin.marketCap.toFixed(1)}` }}</span>
     </div>
     <input
-      type="date"
+      class="pick-date"
+      type="datetime-local"
       v-model="input_data"
-      :id="index"
       v-on:change="getPastPrice"
     />
   </div>
@@ -90,14 +101,9 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.card:hover {
-  transition: 1s;
-  opacity: 80%;
-}
-
 .coin-image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .price-div {
@@ -110,7 +116,8 @@ export default {
 
 .past {
   font-size: 10px;
-  color: var(--down);
+  font-weight: 700;
+  color: var(--outofdate);
 }
 
 .fixed {
@@ -129,17 +136,7 @@ export default {
   display: none;
 }
 
-.date {
-  width: 40px;
-  height: 40px;
-}
-
-.date:hover {
-  cursor: pointer;
-}
-
 input {
-  width: 17px;
   background-color: var(--light-purple);
   border: none;
 }
@@ -149,12 +146,21 @@ input:focus {
   outline: 0;
 }
 
+.pick-date {
+  width: 17px;
+}
+
 @media (min-width: 768px) {
   #coin-mc {
     display: flex;
   }
   .card {
     font-size: 22px;
+  }
+
+  .coin-image {
+    width: 50px;
+    height: 50px;
   }
 }
 </style>

@@ -12,6 +12,7 @@ export default {
   data() {
     return {
       coins: [],
+      timer: 20,
     }
   },
   components: {
@@ -82,7 +83,7 @@ export default {
   async mounted() {
     setInterval(async () => {
       this.coins = await this.getCoins()
-    }, 11000)
+    }, 20000)
   },
 }
 </script>
@@ -94,6 +95,7 @@ export default {
       <p>Price</p>
       <p class="market-c">Market Cap</p>
     </div>
+
     <!-- loading symbol -->
     <div class="" v-if="coins.length !== 5">
       <div class="lds-roller">
