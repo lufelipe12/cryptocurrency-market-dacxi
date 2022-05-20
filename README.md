@@ -29,6 +29,10 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 
 ![Screenshot from 2022-05-20 08-22-02](https://user-images.githubusercontent.com/90461911/169517708-98792471-e509-4df9-9f9c-46ca8e913cf8.png)
 
+### Vercel app: https://cryptocurrency-market-daxci-lufelipe12.vercel.app/****
+
+### Github Pages: 
+
 This template should help get you started developing with Vue 3.
 
 ## After cloning the project:
