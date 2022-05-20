@@ -1,4 +1,4 @@
-# Cryptocurrency-market-daxci
+# Cryptocurrency Dacxi Wallet
 
 ### In this project i use Vue3, axios and animate.css as main tecnologies.
 
