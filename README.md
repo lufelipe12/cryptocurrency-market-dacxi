@@ -2,6 +2,21 @@
 
 ### In this project i use Vue3, axios and animate.css as main tecnologies.
 
+This is my first project in Vue3, a lot of work has been done. I appreciate the opportunity to lean new tecnologies everyday and that's kind of challenge to me. 
+
+This app depends on https://www.coingecko.com/en/api/ to work so if it's down problably it won't work, please check api status on https://www.coingecko.com/en/api/documentation.
+
+The code decisios was made to make easy to understand the files and to locate easily what something does and where the functionality is.
+I use a lot of setInterval to control requisitions and responses. It's not the best solution but i tried to make a functionality work.
+
+### ✅ Features
+
+- Updated Bitcoin, Ethereum, Cosmos, terra-luna and Dacxi prices
+- You can select date and time to show past prices.
+
+### Landing page:
+  
+
 This template should help get you started developing with Vue 3.
 
 ## After cloning the project:
