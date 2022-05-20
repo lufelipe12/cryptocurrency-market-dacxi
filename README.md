@@ -15,6 +15,7 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 - You can select date and time to show past prices.
 - The price update without refreshing the page in 20 seconds depending on API.
 - If the price goes down compared to the last displayed price it turns red for a second or turns green if it goes up.
+- Use localStorage to store the past price to compare with updated price.
 
 ### Landing page:
  
@@ -23,6 +24,10 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 ### Selecting date and time: 
 
 ![Screenshot from 2022-05-20 08-00-20](https://user-images.githubusercontent.com/90461911/169516890-cb85240f-48a2-46a1-9e5b-d084a0688759.png)
+
+### When price is out of date after select a date and time:
+
+![Screenshot from 2022-05-20 08-22-02](https://user-images.githubusercontent.com/90461911/169517708-98792471-e509-4df9-9f9c-46ca8e913cf8.png)
 
 This template should help get you started developing with Vue 3.
 
