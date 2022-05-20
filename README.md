@@ -54,7 +54,7 @@ or
 yarn
 ```
 
-### After all instalations finish, compile and hot-reload for Development
+### After complete all instalations, compile and hot-reload for Development
 
 ```sh
 type on cli --> 
