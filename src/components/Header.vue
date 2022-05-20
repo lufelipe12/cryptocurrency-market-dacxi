@@ -9,11 +9,7 @@ export default {
 <template>
   <header class="animate__animated animate__backInDown">
     <div class="header-div">
-      <img
-        class="header-img"
-        alt="logo"
-        src="./cryptocurrency-market-daxci/assets/images/dacxi.png"
-      />
+      <img class="header-img" alt="logo" src="./assets/images/dacxi.png" />
       <p class="header-p">Dacxi Wallet</p>
     </div>
   </header>
