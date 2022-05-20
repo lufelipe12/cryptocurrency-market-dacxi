@@ -1,6 +1,6 @@
 # Cryptocurrency Dacxi Wallet
 
-### In this project i used Vue3, Vite for development axios and animate.css as main tecnologies.
+### In this project i used Vue3, Vite for development, axios and animate.css as main tecnologies.
 
 This is my first project in Vue3, a lot of work has been done. I appreciate the opportunity to learn new tecnologies everyday and that's kind of challenge to me. 
 
