@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
+  "homepage": "http://lufelipe12.github.io/cryptocurrency-market-daxci/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
