@@ -13,10 +13,15 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 
 - Updated Bitcoin, Ethereum, Cosmos, terra-luna and Dacxi prices
 - You can select date and time to show past prices.
+- The price update without refreshing the page in 20 seconds depending on API.
+- If the price goes down compared to the last displayed price it turns red for a second or turns green if it goes up.
 
 ### Landing page:
  
 ![Screenshot from 2022-05-20 07-59-10](https://user-images.githubusercontent.com/90461911/169515559-176f48f9-e228-43cf-a13b-1eab90767158.png)
+
+### Selecting date and time: 
+
 
 This template should help get you started developing with Vue 3.
 
