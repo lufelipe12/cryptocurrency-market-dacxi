@@ -19,27 +19,21 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 
 ### Landing page:
 
-<div styles='center'>
+<div align='center'>
 <img src='https://user-images.githubusercontent.com/90461911/169515559-176f48f9-e228-43cf-a13b-1eab90767158.png'/>
 </div>
 
-![Screenshot from 2022-05-20 07-59-10](https://user-images.githubusercontent.com/90461911/169515559-176f48f9-e228-43cf-a13b-1eab90767158.png)
-
 ### Selecting date and time: 
 
-<div styles='center'>
+<div align='center'>
 <img src='https://user-images.githubusercontent.com/90461911/169516890-cb85240f-48a2-46a1-9e5b-d084a0688759.png'/>
 </div>
 
-![Screenshot from 2022-05-20 08-00-20](https://user-images.githubusercontent.com/90461911/169516890-cb85240f-48a2-46a1-9e5b-d084a0688759.png)
-
 ### When price is out of date after select a date and time:
 
-<div styles='center'>
+<div align='center'>
 <img src='https://user-images.githubusercontent.com/90461911/169517708-98792471-e509-4df9-9f9c-46ca8e913cf8.png'/>
 </div>
-
-![Screenshot from 2022-05-20 08-22-02](https://user-images.githubusercontent.com/90461911/169517708-98792471-e509-4df9-9f9c-46ca8e913cf8.png)
 
 ### Vercel app: https://cryptocurrency-market-daxci-lufelipe12.vercel.app/
 
