@@ -1,8 +1,8 @@
 # Cryptocurrency Dacxi Wallet
 
-### In this project i use Vue3, axios and animate.css as main tecnologies.
+### In this project i used Vue3, axios and animate.css as main tecnologies.
 
-This is my first project in Vue3, a lot of work has been done. I appreciate the opportunity to lean new tecnologies everyday and that's kind of challenge to me. 
+This is my first project in Vue3, a lot of work has been done. I appreciate the opportunity to learn new tecnologies everyday and that's kind of challenge to me. 
 
 This app depends on https://www.coingecko.com/en/api/ to work so if it's down problably it won't work, please check api status on https://www.coingecko.com/en/api/documentation.
 
