@@ -11,7 +11,7 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 
 ### ✅ Features
 
-- Updated Bitcoin, Ethereum, Cosmos, terra-luna and Dacxi prices
+- Updated Bitcoin, Ethereum, Atom, Terra-Luna and Dacxi prices
 - You can select date and time to show past prices.
 - The price update without refreshing the page in 20 seconds depending on API.
 - If the price goes down compared to the last displayed price it turns red for a second or turns green if it goes up.
