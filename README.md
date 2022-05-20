@@ -15,7 +15,8 @@ I use a lot of setInterval to control requisitions and responses. It's not the b
 - You can select date and time to show past prices.
 
 ### Landing page:
-  
+ 
+![Screenshot from 2022-05-20 07-59-10](https://user-images.githubusercontent.com/90461911/169515559-176f48f9-e228-43cf-a13b-1eab90767158.png)
 
 This template should help get you started developing with Vue 3.
 
