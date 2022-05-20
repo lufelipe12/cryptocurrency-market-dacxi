@@ -161,6 +161,11 @@ input:focus {
   outline: 0;
 }
 
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
 /* breathing effect */
 
 #breathing-text {
