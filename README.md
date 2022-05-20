@@ -1,29 +1,42 @@
-# cryptocurrency-market-daxci
+# Cryptocurrency-market-daxci
 
-This template should help get you started developing with Vue 3 in Vite.
+### In this project i use Vue3, axios and animate.css as main tecnologies.
 
-## Recommended IDE Setup
+This template should help get you started developing with Vue 3.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
+## After cloning the project:
 ## Project Setup
 
 ```sh
+type on cli -->
+
 npm install
+
+or
+
+yarn
 ```
 
-### Compile and Hot-Reload for Development
+### After all instalations finish, compile and hot-reload for Development
 
 ```sh
+type on cli --> 
+
 npm run dev
+
+or 
+
+yarn dev
 ```
 
-### Compile and Minify for Production
+### If you want to compile and minify for production
 
 ```sh
+type on cli --> 
+
 npm run build
+
+or
+
+yarn build
 ```
